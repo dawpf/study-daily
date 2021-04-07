@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button class="btn">按钮</button>
+
+  <button class="btn1" style="margin-left: 50px;">按钮</button>
+
+</body>
+
+<script>
+  const million = 1000000;
+  const arr = Array(million);
+  console.time('⏰');
+  // for (let i = arr.length; i > 0; i--) { } // for(倒序) 	:- 1.5ms
+  // for (let i = 0; i < arr.length; i++) { } // for          :- 1.6ms
+  // arr.forEach(v => v)                     // foreach      :- 2.1ms
+  for (const v of arr) { }                 // for...of     :- 11.7ms
+  console.timeEnd('⏰');
+
+  // console.log('⏳');
+
+</script>
+
+</html>

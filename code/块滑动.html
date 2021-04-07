@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    transition: 0.5s all;
+  }
+
+  .son {
+    width: 100%;
+    height: 33.3333%;
+  }
+
+  .son1 {
+    background: #00ff00;
+  }
+
+  .son2 {
+    background: #ff0000;
+  }
+
+  .son3 {
+    background: blue;
+  }
+</style>
+
+<body>
+
+  <div class="box">
+    <div class="content">
+      <div class="son1 son">son111111</div>
+      <div class="son2 son">son222222</div>
+      <div class="son3 son">son333333</div>
+    </div>
+  </div>
+
+</body>
+
+<script src="./lib/jquery-3.5.1.js"></script>
+<script src="./lib/jquery.mousewheel.min.js"></script>
+
+<script>
+
+  let timeNow = new Date().getTime()
+
+
+  function throttle(func, delay) {
+    var timer = null;
+    return function () {
+      var context = this;
+      var args = arguments;
+      if (!timer) {
+        timer = setTimeout(function () {
+          func.apply(context, args);
+          timer = null;
+        }, delay);
+      }
+    }
+  }
+
+
+
+  function debounce(fn, wait) {
+    //用来记录当前执行函数的状态
+    var timeout = null;
+
+    return function () {
+      if (timeout !== null) {
+        //清除正在执行的函数
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(fn, wait);
+    }
+  }
+
+  // $(document).on('mousewheel', function (event) {
+  //   const val = event.deltaY < 0 ? 'down' : 'up'
+  //   debounce(switchIMg(val), 2000)
+  // });
+
+  $(document).on('mousewheel', function (event) {
+    const val = event.deltaY < 0 ? 'down' : 'up'
+    // debounce(switchIMg(val), 2000)
+    throttle(switchIMg(val), 2000)
+  });
+
+  let selImg = 0
+
+  const $content = document.querySelector('.content')
+  function switchIMg(val) {
+    if (val === 'up') {
+      selImg = Math.max(selImg - 1, 0)
+    } else {
+      selImg = Math.min(selImg + 1, 2)
+    }
+    $content.style.transform = `translateY(${-33.33333 * selImg + '%'})`;
+  }
+
+</script>
+
+</html>
