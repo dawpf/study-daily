@@ -1,8 +1,4 @@
-/**
- * 第三方网站短信接口
- * 最后更新：2021-03-12
- * @type {*[]}
- */
+
 var requestList = [
     {
         name: '工图网',
@@ -37,7 +33,7 @@ var requestList = [
             $.ajax({
                 url: "http://test.marketing.i.vipcode.com/api/marketing/dataStatistics/sendCode",
                 type: "post",
-                data: {phone: phone,},
+                data: { phone: phone, },
                 dataType: "json",
             })
         }
@@ -200,9 +196,9 @@ var requestList = [
             $.ajax({
                 url: 'https://app-gateway.zmlearn.com/api/operation-web-server/v1/ow/validateChildCode',
                 type: 'POST',
-                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 dataType: 'json',
-                data: JSON.stringify({mobile: '86-' + phone}),
+                data: JSON.stringify({ mobile: '86-' + phone }),
             })
         },
     },
