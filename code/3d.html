@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>translate3d(x,y,z)的用法</title>
+  <style type="text/css">
+    body {
+      margin: 0
+    }
+
+    .div1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    .div3 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    .div2 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      transform: perspective(100px) translate3d(10px, 10px, 10px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div1">111</div>
+  <div class="div2">222</div>
+  <div class="div3">333</div>
+</body>
+
+</html>
