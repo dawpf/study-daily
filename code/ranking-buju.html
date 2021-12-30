@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    width: 500px;
+    height: 700px;
+    margin: 0 auto;
+    background-color: pink;
+    border: 1px solid #000;
+  }
+
+  .listItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid greenyellow;
+  }
+
+  .left {
+    background-color: red;
+    max-width: 60%;
+    overflow-x: scroll;
+  }
+
+  .right {
+    float: right;
+    text-align: right;
+    max-width: 40%;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+    <div class="listItem">
+      <div class="left">left11111111321111111423111115341153419</div>
+      <div class="right">
+        <span>幸运值：12345678</span>
+      </div>
+    </div>
+    <div class="listItem">
+      <div class="left">left</div>
+      <div class="right">
+        <span>幸运值：123456789098765432</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数柯里化</title>
+</head>
+<style>
+  .div1 {
+    background-color: red;
+  }
+
+  .div2 {
+    background-color: green;
+  }
+
+  .div3 {
+    background-color: blue;
+  }
+
+  .div4 {
+    background-color: yellow;
+  }
+
+  .container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+</style>
+
+<body>
+
+  <div class="container">
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+  </div>
+
+</body>
+
+
+<script>
+
+  function add() {
+    // 第一次执行时，定义一个数组专门用来存储所有的参数
+    var _args = Array.prototype.slice.call(arguments);
+
+    // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+    var _adder = function () {
+      _args.push(...arguments);
+      return _adder;
+    };
+
+    // 利用toString隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+    _adder.toString = function () {
+      return _args.reduce(function (a, b) {
+        return a + b;
+      });
+    }
+    return _adder;
+  }
+
+  // console.log(add(1)(2, 3, 4)(5));
+
+  let aa = add(1)(2, 3, 4)(5)
+
+  // console.log(aa + 20);
+  // console.log(aa.toString());
+
+
+
+  // 函数定义
+  function fun(obj, ...org) {
+    console.log(obj);
+    console.log(org);
+  }
+
+  // 函数调用
+  const obj = { a: '123' }
+  fun(obj, 4, 5, 6)
+
+
+</script>
+
+</html>
